@@ -305,6 +305,11 @@ class SelectComponent extends Component {
     this.pushEvent("closed");
   }
 
+  // No special handling needed
+  onClosedExit() {
+
+  }
+
   onOpenEnter() {
     // Initialize positioned element
     this.initializePositionedElement();
