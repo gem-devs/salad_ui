@@ -106,7 +106,7 @@ class SelectItem extends Component {
 
   handleActivation(event) {
     event.preventDefault();
-    event.stopPropagation();
+    event.stopImmediatePropagation();
     if (!this.disabled) {
       this.parent.selectValue(this.value);
     }
@@ -172,7 +172,6 @@ class SelectComponent extends Component {
       stateMachine: {
         closed: {
           enter: "onClosedEnter",
-          exit: "onClosedExit",
           transitions: {
             open: "open",
             toggle: "open",
