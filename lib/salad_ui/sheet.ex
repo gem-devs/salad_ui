@@ -78,6 +78,7 @@ defmodule SaladUI.Sheet do
       class={classes(["relative inline-block", @class])}
       data-component="dialog"
       data-state={@initial_state}
+      data-open={to_string(@open)}
       data-event-mappings={@event_map}
       data-options={@options}
       data-part="root"
