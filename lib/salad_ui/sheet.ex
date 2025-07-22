@@ -116,6 +116,7 @@ defmodule SaladUI.Sheet do
   attr :class, :string, default: nil
   attr :side, :string, values: ~w(top right bottom left), default: "right", doc: "The side from which the sheet appears"
   attr :rest, :global
+  attr :overlay, :boolean, default: true
   slot :inner_block, required: true
 
   def sheet_content(assigns) do
@@ -125,7 +126,11 @@ defmodule SaladUI.Sheet do
     <div data-part="content" tabindex="0" hidden>
       <div
         data-part="overlay"
-        class="fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
+        class={[
+          "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          if(@overlay, do: "block", else: "hidden")
+        ]}
+
       />
 
       <div
