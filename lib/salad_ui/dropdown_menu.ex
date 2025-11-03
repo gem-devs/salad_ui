@@ -68,6 +68,7 @@ defmodule SaladUI.DropdownMenu do
   * `:portal-container` - CSS selector for the portal container. Defaults to `nil`.
   * `:on-open` - Handler for dropdown menu open event.
   * `:on-close` - Handler for dropdown menu close event.
+  * `:preserve-state` - Whether to preserve open/closed state across LiveView updates. Defaults to `true`.
   * `:class` - Additional CSS classes.
   """
   attr :id, :string, required: true, doc: "Unique identifier for the dropdown menu"
@@ -76,6 +77,7 @@ defmodule SaladUI.DropdownMenu do
   attr :"portal-container", :string, default: nil, doc: "CSS selector for the portal container"
   attr :"on-open", :any, default: nil, doc: "Handler for dropdown menu open event"
   attr :"on-close", :any, default: nil, doc: "Handler for dropdown menu close event"
+  attr :"preserve-state", :boolean, default: true, doc: "Whether to preserve open/closed state across LiveView updates"
   attr :class, :string, default: nil
   attr :rest, :global
   slot :inner_block, required: true
@@ -94,6 +96,7 @@ defmodule SaladUI.DropdownMenu do
       |> assign(:initial_state, if(assigns.open, do: "open", else: "closed"))
       |> assign(:use_portal, assigns[:"use-portal"])
       |> assign(:portal_container, assigns[:"portal-container"])
+      |> assign(:preserve_state, assigns[:"preserve-state"])
       |> assign(
         :options,
         json(%{
@@ -112,6 +115,7 @@ defmodule SaladUI.DropdownMenu do
       data-event-mappings={@event_map}
       data-options={@options}
       data-part="root"
+      data-preserve-state={to_string(@preserve_state)}
       phx-hook="SaladUI"
       {@rest}
     >
