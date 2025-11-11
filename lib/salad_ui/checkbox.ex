@@ -37,6 +37,7 @@ defmodule SaladUI.Checkbox do
   attr :"default-value", :any, values: [true, false, "true", "false"], default: false
   attr :field, Phoenix.HTML.FormField
   attr :class, :string, default: nil
+  attr :checked, :boolean
   attr :rest, :global
   attr :mode, :atom, default: :boolean, values: [:boolean, :multi_select]
 
