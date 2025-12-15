@@ -302,7 +302,8 @@ defmodule SaladUI.DropdownMenu do
   attr :value, :string, default: nil
   attr :variant, :string, values: ~w(default destructive), default: "default"
   attr :disabled, :boolean, default: false
-  attr :rest, :global, include: ~w(href method)
+  # Allow standard LiveView navigation attributes to be forwarded to the underlying link
+  attr :rest, :global, include: ~w(href method navigate patch replace)
   slot :inner_block, required: true
 
   def dropdown_menu_link_item(assigns) do
