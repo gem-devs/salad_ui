@@ -178,7 +178,8 @@ defmodule SaladUI.Form do
       assigns
       |> assign(
         error:
-          Phoenix.Component.used_input?(assigns[:field]) &&
+          assigns[:field] &&
+            Phoenix.Component.used_input?(assigns[:field]) &&
             (has_error?(assigns[:field]) ||
                (not is_nil(assigns[:errors]) and not Enum.empty?(assigns[:errors])))
       )
